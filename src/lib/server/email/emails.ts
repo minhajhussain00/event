@@ -13,9 +13,7 @@ export async function sendVerificationEmail(email: string, url: string, token: s
 
   
 
-  const verifyUrl = url.startsWith("http")
-    ? url 
-    : `${PUBLIC_BASE_URL}/api/auth${url}`;
+  const verifyUrl = `${PUBLIC_BASE_URL}/api/auth${url}`;
     
   console.log(`📧 Attempting to send verification email to: ${email}`);
   console.log(`🔗 Verification URL: ${verifyUrl}`);

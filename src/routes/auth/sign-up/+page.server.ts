@@ -1,4 +1,3 @@
-// src/routes/sign-up/+page.server.ts
 import type { Actions, PageServerLoad } from './$types';
 import { fail } from '@sveltejs/kit';
 import { superValidate, message, setError } from 'sveltekit-superforms/server';
@@ -14,8 +13,7 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	default: async (event) => {
-	console.log("ere")
-		const form = await superValidate(event, zod(formSchema));
+		const form = await superValidate(event.request, zod(formSchema));
 
 		if (!form.valid) {
 			return fail(400, { form });

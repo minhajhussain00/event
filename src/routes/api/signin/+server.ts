@@ -1,4 +1,3 @@
-// src/routes/api/login/+server.ts
 import type { RequestHandler } from './$types';
 import { auth } from '$lib/server/auth';
 import { APIError } from 'better-auth/api';

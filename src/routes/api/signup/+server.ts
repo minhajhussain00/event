@@ -4,16 +4,16 @@ import { APIError } from 'better-auth/api';
 import { connectToDB } from '$lib/server/db/connect';
 
 export const POST: RequestHandler = async ({ request }) => {
-	try {
-		await connectToDB();
-		const { email, password, firstName, lastName } = await request.json();
+	await connectToDB();
+	const { email, password, firstName, lastName } = await request.json();
 
-		if (!email || !password || !firstName || !lastName) {
-			return new Response(
-				JSON.stringify({ success: false, error: 'Missing required fields' }),
-				{ status: 400 }
-			);
-		}
+	if (!email || !password || !firstName || !lastName) {
+		return new Response(
+			JSON.stringify({ success: false, error: 'Missing required fields' }),
+			{ status: 400 }
+		);
+	}
+	try {
 
 		await auth.api.signUpEmail({
 			body: {
@@ -34,7 +34,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		);
 	} catch (error) {
 		if (error instanceof APIError) {
-			return new Response(JSON.stringify({ success: false, error: error.message }), {
+			console.log(error.message)
+			return new Response(JSON.stringify({ success: false, error: "User already exites" }), {
 				status: 400
 			});
 		}

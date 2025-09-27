@@ -24,11 +24,14 @@ export const actions: Actions = {
 
 			if (res.data.success) {
 				return message(form, res.data.message);
-			} else {
+			} else if(res.status == 400){
+				return message(form, res.data.message);
+			}
+			else {
 				return setError(form, res.data.error || 'Signup failed');
 			}
 		} catch (err: any) {
-			console.error('Signup request failed:', err);
+			console.error('Signup request failed:', err.message);
 			return setError(form, 'Unexpected error during signup');
 		}
 	}

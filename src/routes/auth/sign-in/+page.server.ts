@@ -19,20 +19,16 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		try {
-			const res = await axios.post(`${event.url.origin}/api/signin`, {
-				email: form.data.email,
-				password: form.data.password
-			});
 
-			if (res.data.success) {
-				throw redirect(302, '/'); // redirect after login
-			} else {
-				return setError(form, res.data.error || 'Login failed');
-			}
-		} catch (err: any) {
-			console.error('Login request failed:', err);
-			return setError(form, err.response?.data?.error || 'Unexpected error');
+		const res = await axios.post(`${event.url.origin}/api/signin`, {
+			email: form.data.email,
+			password: form.data.password
+		});
+
+		if (res.data.success) {
+			throw redirect(302, '/');
+		} else {
+			return setError(form, res.data.error || 'Login failed');
 		}
 	}
 };

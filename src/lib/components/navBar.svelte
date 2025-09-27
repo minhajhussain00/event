@@ -4,12 +4,14 @@
   import { Button } from "./ui/button";
   import { Menu } from "@lucide/svelte";
 
-  const {user} = $props()
-
+  const {data} = $props()
+  console.log("session:"+data)
+  const user = data?.session?.user || null
   const navLinks = [
     { name: "Events", href: "/events" },
     { name: "Pricing", href: "/pricing" },
-    { name: "About", href: "/about" }
+    { name: "About", href: "/about" },
+    { name: "My Event", href: "/Myevent" },
   ];
 </script>
 
@@ -39,10 +41,10 @@
         <Button variant="ghost">Logout</Button>
       {:else}
         <Button variant="outline" >
-          <a href="/login">Login</a>
+          <a href="/auth/sign-in">Login</a>
         </Button>
         <Button >
-          <a href="/signup">Sign Up</a>
+          <a href="/auth/sign-up">Sign Up</a>
         </Button>
       {/if}
     </div>

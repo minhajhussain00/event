@@ -17,10 +17,10 @@
 
 <nav class="border-b bg-background">
   <div class="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
-    <!-- Logo -->
+
     <a href="/" class="font-bold text-lg">Eventify</a>
 
-    <!-- Desktop Menu -->
+ 
     <div class="hidden md:flex items-center gap-6">
       <Root>
         <NavigationMenuList>

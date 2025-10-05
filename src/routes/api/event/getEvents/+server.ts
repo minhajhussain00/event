@@ -6,15 +6,6 @@ import Event from '$lib/server/schemas/event';
 
 export const GET: RequestHandler = async (req) => {
     connectToDB();
-     const session = await auth.api.getSession({
-            query: {
-                disableCookieCache: true,
-            }, 
-            headers: req.request.headers, 
-        })
-    if (!session?.user) {
-        return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
-    }
     let events =  await Event.find();
 
     return new Response(JSON.stringify(events),{status:200});

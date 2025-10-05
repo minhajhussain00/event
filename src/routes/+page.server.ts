@@ -9,5 +9,5 @@ export const load = async (event) => {
 	
     console.log('Session:', session);
 
-	return {session};
+
 };
